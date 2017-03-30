@@ -171,6 +171,8 @@ extension RenderOperation : WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         //None of the content loaded after this point is necessary (images, videos, etc.)
         if let webView = message.webView {
+            Logger.log(message)
+
             if message.name == "doneLoading" && loadMediaContent == false {
                 if let url = webView.url , response == nil {
                     response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
@@ -179,7 +181,7 @@ extension RenderOperation : WKScriptMessageHandler {
                 self.webView(webView, didFinish: nil)
             }
             if message.name == "messageReceived" {
-                print(message)
+                Logger.log("success!")
             }
         }
     }
