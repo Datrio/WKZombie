@@ -178,6 +178,9 @@ extension RenderOperation : WKScriptMessageHandler {
                 webView.stopLoading()
                 self.webView(webView, didFinish: nil)
             }
+            if message.name == "messageReceived" {
+                print(message)
+            }
         }
     }
 }
